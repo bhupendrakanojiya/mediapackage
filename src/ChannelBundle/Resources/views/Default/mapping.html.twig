@@ -1,9 +1,9 @@
+<tr><td>Channel ID</td><td>Channel Title </td><td>Update</td><tr>
 {% for mapping in mappings %}
 	{%for map in mapping%}
 		<tr>
+				<td>{{ map.id }}</td>
                 <td><a href="{{ path('channels_show', { 'id': map.id }) }}">{{ map.title }}</a></td>
-                <td>{{ map.active }}</td>
-                <td>{{ map.id }}</td>
                 <td>
                 <ul>
                     <li>

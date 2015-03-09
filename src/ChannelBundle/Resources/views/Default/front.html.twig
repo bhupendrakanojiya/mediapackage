@@ -1,1 +1,51 @@
-{%extend %}
+{%extends "ChannelBundle:Default:index.html.twig"%}
+{%block heading%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+{%endblock%}
+{%block stylesheet%}
+{%endblock%}
+{%block content%}
+<label>Select Region</label>
+<select name='region' id='regions'>
+ {% for region in regions %}
+ <option value="{{region.id}}" >  {{region.region}} </option>
+ {% endfor %}
+ </select>
+ <label>Select Package</label>
+ <select name='package' id='package'>
+ {% for package in packages %}
+ <option value="{{package.abr}}" >  {{package.package}} </option>
+ {% endfor %}
+ </select>
+<body>
+<div></div>
+<table class='table' id='table_data'>
+<tr><td>Channel ID</td><td>Channel Title </td><td>Update</td></tr>
+ {% for entity in entities %}
+ 
+            <tr>
+				<td>{{ entity.id }}</td>
+                <td><a href="{{ path('channels_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+                            
+                <td> 
+                <ul>
+                    <li>
+                        <a href="{{ path('channels_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('channels_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+		</table>
+{%endblock%}
+{%block javascript%}
+<script src="{{ asset('bundles/channel/js/channel.js') }}"></script>
+<script language='javascript'>
+
+</script>
+{% endblock %}

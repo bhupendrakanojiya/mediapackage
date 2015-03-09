@@ -21,7 +21,7 @@ class DefaultController extends Controller
 		 $packages = $em->getRepository('ChannelBundle:Packages')->findAll();
 		 $regions = $em->getRepository('ChannelBundle:Regions')->findAll();
 		 		 
-		return $this->render('ChannelBundle:Default:index.html.twig',array('entities' => $channels,'packages'=>$packages,'regions'=>$regions));
+		return $this->render('ChannelBundle:Default:front.html.twig',array('entities' => $channels,'packages'=>$packages,'regions'=>$regions));
     }
 	public function mappingAction($mapid)
 	{
