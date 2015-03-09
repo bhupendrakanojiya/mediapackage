@@ -1,0 +1,30 @@
+channels:
+    path:     /
+    defaults: { _controller: "ChannelBundle:Channels:index" }
+
+channels_show:
+    path:     /{id}/show
+    defaults: { _controller: "ChannelBundle:Channels:show" }
+
+channels_new:
+    path:     /new
+    defaults: { _controller: "ChannelBundle:Channels:new" }
+
+channels_create:
+    path:     /create
+    defaults: { _controller: "ChannelBundle:Channels:create" }
+    requirements: { _method: post }
+
+channels_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ChannelBundle:Channels:edit" }
+
+channels_update:
+    path:     /{id}/update
+    defaults: { _controller: "ChannelBundle:Channels:update" }
+    requirements: { _method: post|put }
+
+channels_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ChannelBundle:Channels:delete" }
+    requirements: { _method: post|delete }

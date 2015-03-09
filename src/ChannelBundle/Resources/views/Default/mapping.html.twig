@@ -1,0 +1,19 @@
+{% for mapping in mappings %}
+	{%for map in mapping%}
+		<tr>
+                <td><a href="{{ path('channels_show', { 'id': map.id }) }}">{{ map.title }}</a></td>
+                <td>{{ map.active }}</td>
+                <td>{{ map.id }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('channels_show', { 'id': map.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('channels_edit', { 'id': map.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+	{% endfor %}
+{% endfor %}

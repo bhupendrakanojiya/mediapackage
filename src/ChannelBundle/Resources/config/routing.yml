@@ -1,0 +1,14 @@
+channel_channels:
+    resource: "@ChannelBundle/Resources/config/routing/channels.yml"
+    prefix:   /channels
+
+channel_users:
+    resource: "@ChannelBundle/Resources/config/routing/users.yml"
+    prefix:   /users
+channel_mapping:
+    path:    /mapping/{mapid}
+    defaults: { _controller: ChannelBundle:Default:mapping }
+channel_homepage:
+    path:     /packages
+    defaults: { _controller: ChannelBundle:Default:index }
+
