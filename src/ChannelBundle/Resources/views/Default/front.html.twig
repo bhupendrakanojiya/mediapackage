@@ -1,27 +1,62 @@
 {%extends "ChannelBundle:Default:index.html.twig"%}
 {%block heading%}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 {%endblock%}
 {%block stylesheet%}
 {%endblock%}
 {%block content%}
-<label>Select Region</label>
-<select name='region' id='regions'>
- {% for region in regions %}
- <option value="{{region.id}}" >  {{region.region}} </option>
- {% endfor %}
- </select>
- <label>Select Package</label>
- <select name='package' id='package'>
- {% for package in packages %}
- <option value="{{package.abr}}" >  {{package.package}} </option>
- {% endfor %}
- </select>
+
+ 
 <body>
-<div></div>
-<table class='table' id='table_data'>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Virgin Media</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+         <li><a href="#">
+		<label>Select Package</label>
+		 <select name='package' id='package'>
+		 {% for package in packages %}
+		 <option value="{{package.abr}}" >  {{package.package}} </option>
+		 {% endfor %}
+		 </select>
+		</a></li>
+        <li><a href="#"><label class=''>Select Region</label>
+			<select name='region' id='regions'>
+			 {% for region in regions %}
+			 <option value="{{region.id}}" >  {{region.region}} </option>
+			 {% endfor %}
+			 </select></a></li>
+        
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Login</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Channels</a></li>
+            <li><a href="#">Packages</a></li>
+			 <li class="divider"></li>
+            <li><a href="#">Users</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<table class="table table-striped" id='table_data'>
 <tr><td>Channel ID</td><td>Channel Title </td><td>Update</td></tr>
  {% for entity in entities %}
  
@@ -42,6 +77,7 @@
             </tr>
         {% endfor %}
 		</table>
+	
 {%endblock%}
 {%block javascript%}
 <script src="{{ asset('bundles/channel/js/channel.js') }}"></script>
