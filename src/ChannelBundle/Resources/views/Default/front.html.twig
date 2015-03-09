@@ -7,8 +7,6 @@
 {%block stylesheet%}
 {%endblock%}
 {%block content%}
-
- 
 <body>
 	<nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -42,7 +40,7 @@
 			 </select></a></li>
         
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Login</a></li>
+        <li><a href="{{path('users_login')}}">Login</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">

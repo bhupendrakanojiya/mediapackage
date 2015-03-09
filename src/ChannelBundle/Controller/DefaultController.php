@@ -53,6 +53,11 @@ class DefaultController extends Controller
 		
 		return $this->render('ChannelBundle:Default:mapping.html.twig',array('mappings' => $ids));
 	}
+	function authAction()
+	{
+		//echo "login action called";
+		return $this->render('ChannelBundle:Default:login.html.twig');
+	}
 	
  
 }

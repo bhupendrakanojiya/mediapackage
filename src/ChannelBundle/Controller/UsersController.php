@@ -226,4 +226,8 @@ class UsersController extends Controller
 		echo "get users called";
 		
 	}
+	public function loginAction()
+	{
+		return $this->render('ChannelBundle:Users:login.html.twig');
+	}
 }

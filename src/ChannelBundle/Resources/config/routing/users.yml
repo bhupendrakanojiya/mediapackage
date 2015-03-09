@@ -28,3 +28,7 @@ users_delete:
     path:     /{id}/delete
     defaults: { _controller: "ChannelBundle:Users:delete" }
     requirements: { _method: post|delete }
+users_login:
+    path:    /loginuser
+    defaults: { _controller: "ChannelBundle:Users:login" }
+

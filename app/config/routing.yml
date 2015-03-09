@@ -2,10 +2,3 @@ channel:
     resource: "@ChannelBundle/Resources/config/routing.yml"
     prefix:   /
 
-media_media:
-    resource: "@MediaMediaBundle/Resources/config/routing.yml"
-    prefix:   /
-
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation
