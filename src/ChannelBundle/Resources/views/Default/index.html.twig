@@ -150,6 +150,10 @@ margin-left:20%;
 		var pac=$('#package').val();
 			$.ajax({
 			url:'/virginmedia/web/app_dev.php/mapping'+'/S',
+			beforeSend:function()
+			{
+				$('#table_data').html('<tR><td>loading...</td></tr>');
+			},
 			success:function(data)
 			{
 				$('#table_data').html(data);
@@ -162,6 +166,10 @@ margin-left:20%;
 			var pac=$('#package').val();
 			$.ajax({
 			url:'/virginmedia/web/app_dev.php/mapping'+'/'+pac,
+			beforeSend:function()
+			{
+				$('#table_data').html('<tR><td>loading...</td></tr>');
+			},
 			success:function(data)
 			{
 				$('#table_data').html(data);
