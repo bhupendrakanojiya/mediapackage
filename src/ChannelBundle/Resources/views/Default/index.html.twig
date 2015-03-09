@@ -146,7 +146,15 @@ margin-left:20%;
 //alert('oay');
 	$('#regions').change(
 		function (){
-		alert($('#regions').val());
+		//alert($('#regions').val());
+		var pac=$('#package').val();
+			$.ajax({
+			url:'/virginmedia/web/app_dev.php/mapping'+'/S',
+			success:function(data)
+			{
+				$('#table_data').html(data);
+			}
+			});
 		}
 	);
 	$('#package').change(
