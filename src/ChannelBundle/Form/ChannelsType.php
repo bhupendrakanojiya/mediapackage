@@ -18,7 +18,8 @@ class ChannelsType extends AbstractType
     {
 		$builder
             ->add('title')
-            ->add('active','number',array('empty_data'=>'0'))
+            ->add('active','choice', array(
+    'choices' => array('0'=>'Active','1'=>'Unactive')))
 			->add('packages', 'choice', array(
     'choices' => array('S' => 'Small', 'M' => 'Medium', 'L' => 'Large'),'multiple'=>true,'mapped'=>false
 ));

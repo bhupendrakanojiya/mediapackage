@@ -140,8 +140,11 @@ class ChannelsController extends Controller
      * Displays a form to edit an existing Channels entity.
      *
      */
-    public function editAction($id)
+    public function editAction($id,Request $request)
     {
+		$username=$this->isLogged($request);
+		if(empty($username)){if(empty($username)){return $this->redirect($this->generateUrl('users_login'));}
+			}
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ChannelBundle:Channels')->find($id);

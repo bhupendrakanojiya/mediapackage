@@ -4,9 +4,9 @@ namespace ChannelBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ChannelsControllerTest extends WebTestCase
+class ChannelsControllerTest extends \PHPUnit_Framework_TestCase
 {
-    /*
+    
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
@@ -51,5 +51,5 @@ class ChannelsControllerTest extends WebTestCase
         $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
     }
 
-    */
+   
 }

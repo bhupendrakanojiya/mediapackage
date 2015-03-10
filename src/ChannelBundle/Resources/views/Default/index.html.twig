@@ -35,6 +35,7 @@
 		 </select>
 		</a></li>
 		{%endif%}
+		
 		{%if regions is defined%}
         <li><a href="#"><label class=''>Select Region</label>
 			<select name='region' id='regions'>
@@ -44,11 +45,14 @@
 			 </select></a></li>
         {%endif%}
       <ul class="nav navbar-nav navbar-right">
+	  
 	 	  {% set username = app.session.get('username') %}
 		  {% if username %}
        <li> Welcome {{username}} </li>
+	   <li><a href="{{path('channel_homepage')}}">Home</a></li>
 		<li><a href="{{path('users_logout')}}">Logout</a></li>
 		{% else %}
+		<li><a href="{{path('channel_homepage')}}">Home</a></li>
 		 <li><a href="{{path('users_login')}}">Login</a></li>
 		
 		{% endif %}
@@ -56,6 +60,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{{path('channels_new')}}">Create Channels</a></li>
+			<li><a href="{{path('channels')}}">Channels List</a></li>
             <li><a href="{{path('channel_homepage')}}">Packages</a></li>
 			 <li class="divider"></li>
             <li><a href="{{path('users')}}">Users</a></li>
