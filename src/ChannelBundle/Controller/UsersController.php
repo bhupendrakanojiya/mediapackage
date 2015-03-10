@@ -249,8 +249,8 @@ class UsersController extends Controller
 		{
 		$username = $request->get('username');
 		$password = $request->get('password');
-		$em=$this->getDoctrine()->getEntityManager();
-		$repository = $em -> getRepository("ChannelBundle:Users");
+		$em=$this->getDoctrine()->getManager();
+		$repository = $em->getRepository("ChannelBundle:Users");
 		$user= $repository->findOneBy(array('username'=>$username,'password'=>$password));
 		if($user){
 			
