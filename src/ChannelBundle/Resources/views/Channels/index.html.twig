@@ -6,19 +6,21 @@
     <table class="records_list table">
         <thead>
             <tr>
+				<th>Id</th>
                 <th>Title</th>
-                <th>Active</th>
-                <th>Id</th>
-                <th>Actions</th>
+                <th>Active Status</th>
+                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('channels_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
-                <td>{{ entity.active }}</td>
                 <td>{{ entity.id }}</td>
-                <td>
+				<td><a href="{{ path('channels_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+                <td>{% if entity.active == false %} Active 
+				{% else %} Unactive
+				{%endif%}</td>
+                 <td>	
                 <ul>
                     <li>
                         <a href="{{ path('channels_show', { 'id': entity.id }) }}">show</a>

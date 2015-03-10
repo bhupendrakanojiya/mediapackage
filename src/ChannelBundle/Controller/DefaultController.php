@@ -3,18 +3,22 @@
 namespace ChannelBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 use ChannelBundle\Entity\Channels;
 use ChannelBundle\Entity\Users;
 use ChannelBundle\Entity\Packages;
 use ChannelBundle\Entity\Regions;
 use ChannelBundle\Entity\ChannelMapping;
 use ChannelBundle\Form\ChannelsType;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+		
+		
 		$em = $this->getDoctrine()->getManager();
 		
         $channels = $em->getRepository('ChannelBundle:Channels')->findAll();
@@ -53,10 +57,11 @@ class DefaultController extends Controller
 		
 		return $this->render('ChannelBundle:Default:mapping.html.twig',array('mappings' => $ids));
 	}
-	function authAction()
+	function authAction(Request $request)
 	{
-		//echo "login action called";
-		return $this->render('ChannelBundle:Default:login.html.twig');
+		$session = $request->getSession();
+		$username=$session->get('username');
+		if(empty($username)){return $this->redirect($this->generateUrl('users_login'));}
 	}
 	
  

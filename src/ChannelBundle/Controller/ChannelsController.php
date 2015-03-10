@@ -21,8 +21,9 @@ class ChannelsController extends Controller
      * Lists all Channels entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+		
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('ChannelBundle:Channels')->findAll();
@@ -99,14 +100,14 @@ class ChannelsController extends Controller
      * Displays a form to create a new Channels entity.
      *
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
+		$username=$this->isLogged($request);
+		if(empty($username)){if(empty($username)){return $this->redirect($this->generateUrl('users_login'));}
+			}
         $entity = new Channels();
         $form   = $this->createCreateForm($entity);
-		/* print "<pre>";
-		print_r($form);
-		exit; */
-
+		
         return $this->render('ChannelBundle:Channels:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -247,4 +248,9 @@ class ChannelsController extends Controller
             ->getForm()
         ;
     }
+	public function isLogged(Request $request){
+		$session = $request->getSession();
+		$username=$session->get('username');
+		return $username;
+	}
 }

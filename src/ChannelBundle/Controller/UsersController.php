@@ -6,8 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+
 use ChannelBundle\Entity\Users;
 use ChannelBundle\Form\UsersType;
+
 
 
 /**
@@ -78,9 +80,11 @@ class UsersController extends Controller
      * Displays a form to create a new Users entity.
      *
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        $entity = new Users();
+		//$this->isLog($request);
+		
+		$entity = new Users();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('ChannelBundle:Users:new.html.twig', array(
@@ -234,6 +238,7 @@ class UsersController extends Controller
 	}*/
 	public function loginAction(Request $request)
     {
+			
 		$session = new Session();
 		$session->start();
 		$username=$session->get('username');
@@ -266,5 +271,16 @@ class UsersController extends Controller
 		$session->start();
 		$session->remove('username');
 		return $this->redirect($this->generateUrl('users_login'));
+	}
+	
+	public function isLog(Request $request){
+		$session = $request->getSession();
+		$username=$session->get('username');
+		//echo $username . 'nothing'. $username;
+		$message='';
+		if(empty($username)){
+			
+			return $this->render('ChannelBundle:Users:login.html.twig', array('message' => $message));
+			}
 	}
 }
