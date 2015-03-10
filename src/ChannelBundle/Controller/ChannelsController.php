@@ -4,9 +4,11 @@ namespace ChannelBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\DBAL\DriverManager;
 
 use ChannelBundle\Entity\Channels;
 use ChannelBundle\Form\ChannelsType;
+
 
 /**
  * Channels controller.
@@ -39,11 +41,31 @@ class ChannelsController extends Controller
         $entity = new Channels();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
+		
+	
         if ($form->isValid()) {
+				$req=$request->request->get('channelbundle_channels');
+			
+				$packages=$req['packages'];
+
+		
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+			$ch_id=$entity->getId();
+			if(is_array($packages))
+			{
+				
+				/*$conn = DriverManager::getConnection($params, $config); */
+				foreach($packages as $package)
+				{
+					$sql = "INSERT INTO channel_mapping (channel_id, package_abc) VALUES ('".$ch_id."', '".$package."')";
+				$stmt = $em->getConnection()->prepare($sql);
+				//$stmt->bindValue(':invoice', $invoiceId);
+				$result = $stmt->execute();
+				}
+				
+			}
 
             return $this->redirect($this->generateUrl('channels_show', array('id' => $entity->getId())));
         }
@@ -81,6 +103,9 @@ class ChannelsController extends Controller
     {
         $entity = new Channels();
         $form   = $this->createCreateForm($entity);
+		/* print "<pre>";
+		print_r($form);
+		exit; */
 
         return $this->render('ChannelBundle:Channels:new.html.twig', array(
             'entity' => $entity,

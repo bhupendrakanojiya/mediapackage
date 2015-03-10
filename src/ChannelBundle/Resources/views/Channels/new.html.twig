@@ -1,15 +1,6 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Channels creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('channels') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{%extends "ChannelBundle:Default:index.html.twig"%}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% block content -%}
+{{ form(form)}}	
+   
 {% endblock %}

@@ -12,3 +12,4 @@ channel_homepage:
     path:     /packages
     defaults: { _controller: ChannelBundle:Default:index }
 
+

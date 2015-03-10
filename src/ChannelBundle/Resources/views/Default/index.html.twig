@@ -1,10 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 {%block heading%}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 {%endblock%}
 {%block stylesheet%}
 {%endblock%}
 <body>
+{%block header%}
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Menu baar start from here with mobile resolutions -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Virgin Media</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+	  {%if packages is defined%}
+         <li><a href="#">
+		<label>Select Package</label>
+		 <select name='package' id='package'>
+		 {% for package in packages %}
+		 <option value="{{package.abr}}" >  {{package.package}} </option>
+		 {% endfor %}
+		 </select>
+		</a></li>
+		{%endif%}
+		{%if regions is defined%}
+        <li><a href="#"><label class=''>Select Region</label>
+			<select name='region' id='regions'>
+			 {% for region in regions %}
+			 <option value="{{region.id}}" >  {{region.region}} </option>
+			 {% endfor %}
+			 </select></a></li>
+        {%endif%}
+      <ul class="nav navbar-nav navbar-right">
+	 	  {% set username = app.session.get('username') %}
+		  {% if username %}
+       <li> Welcome {{username}} </li>
+		<li><a href="{{path('users_logout')}}">Logout</a></li>
+		{% else %}
+		 <li><a href="{{path('users_login')}}">Login</a></li>
+		
+		{% endif %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{path('channels')}}">Channels</a></li>
+            <li><a href="{{path('channel_homepage')}}">Packages</a></li>
+			 <li class="divider"></li>
+            <li><a href="{{path('users')}}">Users</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	{%endblock%}
+
 {%block content%}
 {%endblock%}
 </body>

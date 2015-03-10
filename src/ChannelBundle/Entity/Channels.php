@@ -17,7 +17,7 @@ class Channels
     /**
      * @var integer
      */
-    private $active;
+    private $active=0;
 
     /**
      * @var integer

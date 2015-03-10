@@ -2,9 +2,11 @@
 
 namespace ChannelBundle\Form;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use ChannelBundle\Entity\Channels;
 
 class ChannelsType extends AbstractType
 {
@@ -14,13 +16,17 @@ class ChannelsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+		$builder
             ->add('title')
-            ->add('active')
-        ;
+            ->add('active','number',array('empty_data'=>'0'))
+			->add('packages', 'choice', array(
+    'choices' => array('S' => 'Small', 'M' => 'Medium', 'L' => 'Large'),'multiple'=>true,'mapped'=>false
+));
+					
+        
     }
-    
-    /**
+	
+	    /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)

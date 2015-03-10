@@ -4,9 +4,11 @@ namespace ChannelBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use ChannelBundle\Entity\Users;
 use ChannelBundle\Form\UsersType;
+
 
 /**
  * Users controller.
@@ -226,8 +228,43 @@ class UsersController extends Controller
 		echo "get users called";
 		
 	}
-	public function loginAction()
+	/*public function loginAction()
 	{
 		return $this->render('ChannelBundle:Users:login.html.twig');
+	}*/
+	public function loginAction(Request $request)
+    {
+		$session = new Session();
+		$session->start();
+		$username=$session->get('username');
+		$message='';
+		if(!empty($username)){  return $this->redirect($this->generateUrl('channel_homepage')); }
+		
+		if(($request->getMethod()=='POST'))
+		{
+		$username = $request->get('username');
+		$password = $request->get('password');
+		$em=$this->getDoctrine()->getEntityManager();
+		$repository = $em -> getRepository("ChannelBundle:Users");
+		$user= $repository->findOneBy(array('username'=>$username,'password'=>$password));
+		if($user){
+			
+			$session->set('username', $username);
+			return $this->redirect($this->generateUrl('channel_homepage'));
+			}
+			else
+			{
+			$message='Username and password not valid'	;
+			}
+		}
+		return $this->render('ChannelBundle:Users:login.html.twig', array('message' => $message));
+
+    }
+	public function logoutAction()
+	{
+		$session = new Session();
+		$session->start();
+		$session->remove('username');
+		return $this->redirect($this->generateUrl('users_login'));
 	}
 }
