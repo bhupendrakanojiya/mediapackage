@@ -1,4 +1,7 @@
 channel:
     resource: "@ChannelBundle/Resources/config/routing.yml"
     prefix:   /
+homepage:
+    pattern:    /
+    defaults: { _controller: ChannelBundle:Default:index }
 
