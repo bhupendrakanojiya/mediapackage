@@ -16,9 +16,14 @@ class __TwigTemplate_88bfb77fbdc7c76f0d1e08d66e1c20dba88f7f176c96b7099a914ff031d
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css\">
+        echo "<link rel=\"stylesheet\" href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/channel/css/bootstrap.min.css"), "html", null, true);
+        echo "\">
 <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\"></script>
-<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js\"></script>
+<script src=\"";
+        // line 3
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/channel/js/bootstrap.min.js"), "html", null, true);
+        echo "\"></script>
 <style>
 .vertical-offset-100{
     padding-top:100px;
@@ -99,6 +104,6 @@ class __TwigTemplate_88bfb77fbdc7c76f0d1e08d66e1c20dba88f7f176c96b7099a914ff031d
 
     public function getDebugInfo()
     {
-        return array (  49 => 23,  43 => 20,  38 => 17,  36 => 16,  19 => 1,);
+        return array (  54 => 23,  48 => 20,  43 => 17,  41 => 16,  25 => 3,  19 => 1,);
     }
 }
